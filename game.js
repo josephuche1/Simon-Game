@@ -2,6 +2,7 @@ let userClickedPattern = [];
 let gamePattern = [];
 let buttonColors = ["red", "blue",  "green", "yellow"];
 let level = 0;
+let started = false;
 
 $(".btn").click(function(){
     let userChosenColor = $(this).attr("id");
@@ -12,6 +13,7 @@ $(".btn").click(function(){
 });
 
 $(document).keypress(function(){
+    started = true;
     nextSequence();
     
 })
@@ -54,7 +56,8 @@ function checkAnswer(currentLevel){
     setTimeout(function (){
         $("body").removeClass("game-over");
     },200);
-    $("h1").text("Game Over, Press Any Key to Restart")
+    $("h1").text("Game Over, Press Any Key to Restart");
+    startOver();
   }
 
   if(gamePattern.length == userClickedPattern.length){
@@ -62,5 +65,10 @@ function checkAnswer(currentLevel){
         nextSequence();
     }, 1000);
   }
-  
+}
+
+function startOver(){
+   level = 0;
+   started =false;
+   gamePattern = [];
 }
