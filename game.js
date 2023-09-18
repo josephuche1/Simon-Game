@@ -48,14 +48,19 @@ function checkAnswer(currentLevel){
   }
   else{
     console.log("wrong");
+    let wrong = new Audio("./sounds/wrong.mp3");
+    wrong.play();
+    $("body").addClass("game-over")
+    setTimeout(function (){
+        $("body").removeClass("game-over");
+    },200);
+    $("h1").text("Game Over, Press Any Key to Restart")
   }
 
   if(gamePattern.length == userClickedPattern.length){
     setTimeout(function () {
         nextSequence();
     }, 1000);
-    
   }
-  
   
 }
